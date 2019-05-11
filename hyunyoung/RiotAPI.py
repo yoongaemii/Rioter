@@ -6,12 +6,13 @@
 
 ##### Dynamic Data
 
+import config
 import requests
 import json
 from pprint import pprint
 from RiotRequest import RiotRequest
 
-api_key = "RGAPI-017be2b5-f243-44a5-b78b-40e6ec73a3ef"
+api_key = config.api_key
 # game_id = 3309773060
 
 def get_account_id(summoner_name):
