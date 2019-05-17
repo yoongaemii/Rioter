@@ -39,7 +39,7 @@ def RiotRequest(url):
         r = requests.get(url)
 
         if r.status_code == 200: # Successful
-            print('Successful')
+            # print('Successful')
             json_data = json.loads(r.content.decode("utf-8"))
             return json_data
 

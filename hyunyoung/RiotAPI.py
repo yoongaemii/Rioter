@@ -36,7 +36,7 @@ def get_match_ids(account_id):
 
 def get_match_history(account_id):
     '''
-    input: account_id
+    account_id: str. accound id of the user
     output: List[MatchReferenceDto]
     MatchReferenceDto: {'platformId', 'gameId', 'champion', 'queue', 'season', 'timestamp', 'role', 'lane'}
     API doc: https://developer.riotgames.com/api-methods/#match-v4/GET_getMatchlist
@@ -47,7 +47,6 @@ def get_match_history(account_id):
     
     # make multiple requests to get all matches
     while True: 
-        # TODO: request limit handling
         url = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/{0}?api_key={1}&beginIndex={2}".format(account_id, api_key, beginIndex)
         json_data = RiotRequest(url)
         
