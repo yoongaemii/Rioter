@@ -25,6 +25,25 @@ def get_account_id(summoner_name):
     return json_data['accountId']
 
 
+def get_account_id_by_summonerId(summonerId):
+    '''
+    input: Encrypted summoner id
+    output: account_id
+    '''
+    json_data = RiotRequest("https://kr.api.riotgames.com/lol/summoner/v4/summoners/{0}?api_key={1}".format(summonerId, api_key))
+    return json_data['accountId']
+
+def get_entry(queue, tier, division):
+    '''
+    tiers = ['IRON', 'BRONZE', 'SILVER', 'GOLD', 'PLATINUM', 'DIAMOND']
+    divisions = ['I', 'II', 'III', 'IV']
+    queue = ['RANKED_SOLO_5x5', 'RANKED_FLEX_SR', 'RANKED_FLEX_TT']
+    API doc: https://developer.riotgames.com/api-methods/#league-v4/GET_getLeagueEntries 
+    '''
+    json_data = RiotRequest("https://kr.api.riotgames.com/lol/league/v4/entries/{0}/{1}/{2}?api_key={3}".format(queue, tier, division, api_key))
+    summoners = [usr['summonerId'] for usr in json_data]
+    return summoners
+
 def get_match_ids(account_id):
     '''
     matches라는 key 안에 최대 최근 100개의 match id만
@@ -44,7 +63,7 @@ def get_match_history(account_id):
     # initialize
     beginIndex = 0
     matchList = []
-    
+
     # make multiple requests to get all matches
     while True: 
         url = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/{0}?api_key={1}&beginIndex={2}".format(account_id, api_key, beginIndex)
