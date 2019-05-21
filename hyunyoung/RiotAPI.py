@@ -15,6 +15,7 @@ from RiotRequest import RiotRequest
 api_key = config.api_key
 # game_id = 3309773060
 
+
 def get_account_id(summoner_name):
     '''
     input: 접근할 수 있는 summoner name
@@ -35,7 +36,7 @@ def get_match_ids(account_id):
 
 def get_match_history(account_id):
     '''
-    input: account_id
+    account_id: str. accound id of the user
     output: List[MatchReferenceDto]
     MatchReferenceDto: {'platformId', 'gameId', 'champion', 'queue', 'season', 'timestamp', 'role', 'lane'}
     API doc: https://developer.riotgames.com/api-methods/#match-v4/GET_getMatchlist
@@ -46,7 +47,6 @@ def get_match_history(account_id):
     
     # make multiple requests to get all matches
     while True: 
-        # TODO: request limit handling
         url = "https://kr.api.riotgames.com/lol/match/v4/matchlists/by-account/{0}?api_key={1}&beginIndex={2}".format(account_id, api_key, beginIndex)
         json_data = RiotRequest(url)
         
@@ -133,3 +133,12 @@ def get_summoner_spells():
     api_data = requests.get("http://ddragon.leagueoflegends.com/cdn/6.24.1/data/ko_KR/summoner.json")
     json_data = json.loads(api_data.content.decode("utf-8"))
     return json_data['data']
+
+
+if __name__ == "__main__":
+    summoner_name = "야너어어어엌"
+    url = "https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/{0}?api_key={1}".format(summoner_name, api_key)
+    r = requests.get(url)
+    json_data = json.loads(r.content.decode("utf-8"))
+    print(json_data)
+    # print(get_account_id("야너어어어엌"))
