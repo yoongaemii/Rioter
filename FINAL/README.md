@@ -8,7 +8,7 @@
 ## 1. 데이터 수집
 ### `RiotRequest.py`  
 
-Riot에서는 게임 데이터를 크롤링할 수 있는 API key를 제공합니다. LOL 아이디가 있으면 누구나 발급받을 수 있지만 엄격한 Rate Limiting이 존재합니다.
+Riot에서는 게임 데이터를 크롤링할 수 있는 API key를 제공합니다. LOL 아이디가 있으면 누구나 발급받을 수 있지만 엄격한 Rate Limiting이 존재합니다.  
 참고: [Riot의 Rate Limiting 관련 정책](https://developer.riotgames.com/rate-limiting.html)
 > In order to control the use of the Riot Games API, we set limits on how many times endpoints can be accessed within a given time period. These limits are put in place to minimize abuse, to maintain a high level of stability, and to protect the underlying systems that back the API from being overloaded. The underlying systems are the same systems that power League of Legends, so if they are overloaded, player experience suffers, and our first priority is to protect that experience.  
 
